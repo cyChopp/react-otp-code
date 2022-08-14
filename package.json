@@ -1,0 +1,32 @@
+{
+    "name": "react-otp-code",
+    "version": "1.1.0",
+    "description": "React one time password input",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "rm -rf dist/ && prettier --write src/ && npm run build:esm && npm run build:cjs",
+        "build:esm": "tsc",
+        "build:cjs": "tsc --module CommonJS --outDir dist/cjs"
+    },
+    "keywords": [
+        "otp"
+    ],
+    "author": "Alex Louttchenko",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^18.7.3",
+        "@types/react": "^18.0.17",
+        "@types/react-dom": "^18.0.6",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "typescript": "^4.7.4"
+    },
+    "peerDependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    }
+}
