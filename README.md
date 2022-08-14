@@ -1,1 +1,1 @@
-# react-otp-code
+# React one time password input field
