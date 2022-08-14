@@ -1,6 +1,6 @@
 {
     "name": "react-otp-code",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "React one time password input",
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
@@ -12,8 +12,12 @@
         "build:esm": "tsc",
         "build:cjs": "tsc --module CommonJS --outDir dist/cjs"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cyChopp/react-otp-code.git"
+    },
     "keywords": [
-        "otp"
+        "otp input passcode component"
     ],
     "author": "Alex Louttchenko",
     "license": "MIT",
@@ -28,5 +32,6 @@
     "peerDependencies": {
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
-    }
+    },
+    "homepage": "https://github.com/cyChopp/react-otp-code#readme"
 }
