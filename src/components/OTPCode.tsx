@@ -41,6 +41,10 @@ export const OTPCode = ({ items = 6, onChange }: IOTPCodeProps) => {
         setCodes(newArray);
         onChange(newArray.join(''));
 
+        if (Number(target.id) === items - 1) {
+            return null;
+        }
+
         if (_inputValue !== '') {
             inputRefs.current[Number(target.id) + 1].focus();
         }
@@ -62,14 +66,16 @@ export const OTPCode = ({ items = 6, onChange }: IOTPCodeProps) => {
             case 'ArrowRight':
             case 'ArrowUp':
                 {
-                    inputRefs.current[Number(target.id) + 1].focus();
+                    if (Number(target.id) !== items - 1) {
+                        inputRefs.current[Number(target.id) + 1].focus();
+                    }
                 }
                 break;
 
             case 'ArrowLeft':
             case 'ArrowDown':
                 {
-                    inputRefs.current[Number(target.id) - 1].focus();
+                    if (Number(target.id) !== 0) inputRefs.current[Number(target.id) - 1].focus();
                 }
                 break;
 
@@ -141,7 +147,7 @@ export const OTPCode = ({ items = 6, onChange }: IOTPCodeProps) => {
     }, []);
 
     return (
-        <fieldset>
+        <>
             {codes.map((value, index) => {
                 return (
                     <input
@@ -156,6 +162,6 @@ export const OTPCode = ({ items = 6, onChange }: IOTPCodeProps) => {
                     />
                 );
             })}
-        </fieldset>
+        </>
     );
 };
