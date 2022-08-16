@@ -22,13 +22,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OTPCode = void 0;
+exports.OtpCode = void 0;
 const react_1 = __importStar(require("react"));
+const classnames_1 = __importDefault(require("classnames"));
 function updateArray({ index, value, array }) {
     return [...array.slice(0, index), value !== null && value !== void 0 ? value : '', ...array.slice(index + 1)];
 }
-const OTPCode = ({ items = 6, onChange }) => {
+const OtpCode = ({ items = 6, classNames, onChange }) => {
     /**
      * variables
      */
@@ -50,6 +54,9 @@ const OTPCode = ({ items = 6, onChange }) => {
         const newArray = updateArray({ index, value: _inputValue, array: codes });
         setCodes(newArray);
         onChange(newArray.join(''));
+        if (Number(target.id) === items - 1) {
+            return null;
+        }
         if (_inputValue !== '') {
             inputRefs.current[Number(target.id) + 1].focus();
         }
@@ -68,13 +75,16 @@ const OTPCode = ({ items = 6, onChange }) => {
             case 'ArrowRight':
             case 'ArrowUp':
                 {
-                    inputRefs.current[Number(target.id) + 1].focus();
+                    if (Number(target.id) !== items - 1) {
+                        inputRefs.current[Number(target.id) + 1].focus();
+                    }
                 }
                 break;
             case 'ArrowLeft':
             case 'ArrowDown':
                 {
-                    inputRefs.current[Number(target.id) - 1].focus();
+                    if (Number(target.id) !== 0)
+                        inputRefs.current[Number(target.id) - 1].focus();
                 }
                 break;
             default:
@@ -132,9 +142,9 @@ const OTPCode = ({ items = 6, onChange }) => {
     (0, react_1.useEffect)(() => {
         inputRefs.current[0].focus();
     }, []);
-    return (react_1.default.createElement("fieldset", null, codes.map((value, index) => {
+    return (react_1.default.createElement("div", { className: (0, classnames_1.default)('otp-code', classNames) }, codes.map((value, index) => {
         return (react_1.default.createElement("input", { key: index, id: `${index}`, value: codes[index], maxLength: 2, ref: (ref) => handleRef(ref, index), onChange: (e) => handleOnChange(e, index), onKeyDown: handleOnKeyDown, onPaste: (e) => handleOnPaste(e, index) }));
     })));
 };
-exports.OTPCode = OTPCode;
-//# sourceMappingURL=OTPCode.js.map
+exports.OtpCode = OtpCode;
+//# sourceMappingURL=OtpCode.js.map

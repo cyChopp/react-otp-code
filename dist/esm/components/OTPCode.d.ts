@@ -1,6 +1,7 @@
-interface IOTPCodeProps {
+interface IOtpCodeProps {
     items?: number;
+    classNames?: string;
     onChange: (v: string) => void;
 }
-export declare const OTPCode: ({ items, onChange }: IOTPCodeProps) => JSX.Element;
+export declare const OtpCode: ({ items, classNames, onChange }: IOtpCodeProps) => JSX.Element;
 export {};

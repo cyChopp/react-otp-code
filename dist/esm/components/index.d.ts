@@ -1,1 +1,1 @@
-export * from './OTPCode';
+export * from './OtpCode';

@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-interface IOTPCodeProps {
+import classnames from 'classnames';
+
+interface IOtpCodeProps {
     items?: number;
+    classNames?: string;
     onChange: (v: string) => void;
 }
 
@@ -15,7 +18,7 @@ function updateArray({ index, value, array }: IUpdateArrayProps) {
     return [...array.slice(0, index), value ?? '', ...array.slice(index + 1)];
 }
 
-export const OTPCode = ({ items = 6, onChange }: IOTPCodeProps) => {
+export const OtpCode = ({ items = 6, classNames, onChange }: IOtpCodeProps) => {
     /**
      * variables
      */
@@ -147,7 +150,7 @@ export const OTPCode = ({ items = 6, onChange }: IOTPCodeProps) => {
     }, []);
 
     return (
-        <>
+        <div className={classnames('otp-code', classNames)}>
             {codes.map((value, index) => {
                 return (
                     <input
@@ -162,6 +165,6 @@ export const OTPCode = ({ items = 6, onChange }: IOTPCodeProps) => {
                     />
                 );
             })}
-        </>
+        </div>
     );
 };
