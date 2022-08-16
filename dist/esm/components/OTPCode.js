@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import classnames from 'classnames';
-import './styles.css';
 function updateArray({ index, value, array }) {
     return [...array.slice(0, index), value !== null && value !== void 0 ? value : '', ...array.slice(index + 1)];
 }
@@ -114,8 +112,8 @@ export const OtpCode = ({ items = 6, classNames, onChange }) => {
     useEffect(() => {
         inputRefs.current[0].focus();
     }, []);
-    return (React.createElement("div", { className: classnames('otp-code', classNames) }, codes.map((value, index) => {
-        return (React.createElement("input", { key: index, id: `${index}`, value: codes[index], maxLength: 2, ref: (ref) => handleRef(ref, index), onChange: (e) => handleOnChange(e, index), onKeyDown: handleOnKeyDown, onPaste: (e) => handleOnPaste(e, index) }));
+    return (React.createElement("div", { style: { display: 'flex', flexDirection: 'row', gap: '20px', marginLeft: 'auto', marginRight: 'auto' }, className: classNames }, codes.map((value, index) => {
+        return (React.createElement("input", { style: { height: '57px', width: '40px', textAlign: 'center' }, key: index, id: `${index}`, value: codes[index], maxLength: 2, ref: (ref) => handleRef(ref, index), onChange: (e) => handleOnChange(e, index), onKeyDown: handleOnKeyDown, onPaste: (e) => handleOnPaste(e, index) }));
     })));
 };
 //# sourceMappingURL=OtpCode.js.map

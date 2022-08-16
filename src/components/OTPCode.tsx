@@ -1,7 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import classnames from 'classnames';
-
-import './styles.css';
 
 interface IOtpCodeProps {
     items?: number;
@@ -151,10 +148,11 @@ export const OtpCode = ({ items = 6, classNames, onChange }: IOtpCodeProps) => {
     }, []);
 
     return (
-        <div className={classnames('otp-code', classNames)}>
+        <div style={{ display: 'flex', flexDirection: 'row', gap: '20px', marginLeft: 'auto', marginRight: 'auto' }} className={classNames}>
             {codes.map((value, index) => {
                 return (
                     <input
+                        style={{ height: '57px', width: '40px', textAlign: 'center' }}
                         key={index}
                         id={`${index}`}
                         value={codes[index]}
