@@ -1,2 +1,2 @@
-export * from './OTPCode';
+export * from './OtpCode';
 //# sourceMappingURL=index.js.map

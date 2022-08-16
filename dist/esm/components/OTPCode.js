@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
+import classnames from 'classnames';
 function updateArray({ index, value, array }) {
     return [...array.slice(0, index), value !== null && value !== void 0 ? value : '', ...array.slice(index + 1)];
 }
-export const OTPCode = ({ items = 6, onChange }) => {
+export const OtpCode = ({ items = 6, classNames, onChange }) => {
     /**
      * variables
      */
@@ -24,6 +25,9 @@ export const OTPCode = ({ items = 6, onChange }) => {
         const newArray = updateArray({ index, value: _inputValue, array: codes });
         setCodes(newArray);
         onChange(newArray.join(''));
+        if (Number(target.id) === items - 1) {
+            return null;
+        }
         if (_inputValue !== '') {
             inputRefs.current[Number(target.id) + 1].focus();
         }
@@ -42,13 +46,16 @@ export const OTPCode = ({ items = 6, onChange }) => {
             case 'ArrowRight':
             case 'ArrowUp':
                 {
-                    inputRefs.current[Number(target.id) + 1].focus();
+                    if (Number(target.id) !== items - 1) {
+                        inputRefs.current[Number(target.id) + 1].focus();
+                    }
                 }
                 break;
             case 'ArrowLeft':
             case 'ArrowDown':
                 {
-                    inputRefs.current[Number(target.id) - 1].focus();
+                    if (Number(target.id) !== 0)
+                        inputRefs.current[Number(target.id) - 1].focus();
                 }
                 break;
             default:
@@ -106,8 +113,8 @@ export const OTPCode = ({ items = 6, onChange }) => {
     useEffect(() => {
         inputRefs.current[0].focus();
     }, []);
-    return (React.createElement("fieldset", null, codes.map((value, index) => {
+    return (React.createElement("div", { className: classnames('otp-code', classNames) }, codes.map((value, index) => {
         return (React.createElement("input", { key: index, id: `${index}`, value: codes[index], maxLength: 2, ref: (ref) => handleRef(ref, index), onChange: (e) => handleOnChange(e, index), onKeyDown: handleOnKeyDown, onPaste: (e) => handleOnPaste(e, index) }));
     })));
 };
-//# sourceMappingURL=OTPCode.js.map
+//# sourceMappingURL=OtpCode.js.map
