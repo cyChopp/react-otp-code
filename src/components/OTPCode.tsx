@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-
 import classnames from 'classnames';
+
+import './styles.css';
 
 interface IOtpCodeProps {
     items?: number;

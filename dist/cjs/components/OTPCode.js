@@ -29,6 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OtpCode = void 0;
 const react_1 = __importStar(require("react"));
 const classnames_1 = __importDefault(require("classnames"));
+require("./styles.css");
 function updateArray({ index, value, array }) {
     return [...array.slice(0, index), value !== null && value !== void 0 ? value : '', ...array.slice(index + 1)];
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classnames from 'classnames';
+import './styles.css';
 function updateArray({ index, value, array }) {
     return [...array.slice(0, index), value !== null && value !== void 0 ? value : '', ...array.slice(index + 1)];
 }

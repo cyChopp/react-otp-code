@@ -1,3 +1,4 @@
+import './styles.css';
 interface IOtpCodeProps {
     items?: number;
     classNames?: string;
