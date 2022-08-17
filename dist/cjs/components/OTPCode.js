@@ -63,7 +63,7 @@ const OtpCode = ({ items = 6, classNames, onChange }) => {
         switch (key) {
             case 'Backspace':
                 {
-                    if (inputRefs.current[Number(target.id)].value !== '') {
+                    if (Number(target.id) === 0) {
                         inputRefs.current[Number(target.id)].focus();
                     }
                     else if (inputRefs.current[Number(target.id)].value === '') {

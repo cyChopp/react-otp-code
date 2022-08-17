@@ -37,10 +37,9 @@ export const OtpCode = ({ items = 6, classNames, onChange }) => {
         switch (key) {
             case 'Backspace':
                 {
-                    if (inputRefs.current[Number(target.id)].value !== '') {
+                    if (Number(target.id) === 0) {
                         inputRefs.current[Number(target.id)].focus();
-                    }
-                    else if (inputRefs.current[Number(target.id)].value === '') {
+                    } else if (inputRefs.current[Number(target.id)].value === '') {
                         inputRefs.current[Number(target.id) - 1].focus();
                     }
                 }
@@ -56,8 +55,7 @@ export const OtpCode = ({ items = 6, classNames, onChange }) => {
             case 'ArrowLeft':
             case 'ArrowDown':
                 {
-                    if (Number(target.id) !== 0)
-                        inputRefs.current[Number(target.id) - 1].focus();
+                    if (Number(target.id) !== 0) inputRefs.current[Number(target.id) - 1].focus();
                 }
                 break;
             default:
@@ -81,7 +79,11 @@ export const OtpCode = ({ items = 6, classNames, onChange }) => {
         let _inputs = [...codes];
         let clipboardInputInitialIndex = 0;
         for (let i = index; i <= items - 1; i++) {
-            _inputs = [..._inputs.slice(0, i), (_b = (_a = clipboardData[clipboardInputInitialIndex]) !== null && _a !== void 0 ? _a : _inputs[i]) !== null && _b !== void 0 ? _b : '', ..._inputs.slice(i + 1)];
+            _inputs = [
+                ..._inputs.slice(0, i),
+                (_b = (_a = clipboardData[clipboardInputInitialIndex]) !== null && _a !== void 0 ? _a : _inputs[i]) !== null && _b !== void 0 ? _b : '',
+                ..._inputs.slice(i + 1)
+            ];
             setCodes(_inputs);
             clipboardInputInitialIndex++;
         }
@@ -90,8 +92,7 @@ export const OtpCode = ({ items = 6, classNames, onChange }) => {
         if (spacesLeft > clipboardLength) {
             const lastString = index + clipboardLength;
             inputRefs.current[Number(lastString)].focus();
-        }
-        else {
+        } else {
             inputRefs.current[items - 1].focus();
         }
     }
@@ -115,8 +116,22 @@ export const OtpCode = ({ items = 6, classNames, onChange }) => {
     useEffect(() => {
         inputRefs.current[0].focus();
     }, []);
-    return (React.createElement("div", { style: { display: 'flex', flexDirection: 'row', gap: '20px', marginLeft: 'auto', marginRight: 'auto' }, className: classNames }, codes.map((value, index) => {
-        return (React.createElement("input", { style: { height: '57px', width: '40px', textAlign: 'center' }, key: index, id: `${index}`, value: codes[index], maxLength: 2, ref: (ref) => handleRef(ref, index), onChange: (e) => handleOnChange(e, index), onKeyDown: handleOnKeyDown, onPaste: (e) => handleOnPaste(e, index) }));
-    })));
+    return React.createElement(
+        'div',
+        { style: { display: 'flex', flexDirection: 'row', gap: '20px', marginLeft: 'auto', marginRight: 'auto' }, className: classNames },
+        codes.map((value, index) => {
+            return React.createElement('input', {
+                style: { height: '57px', width: '40px', textAlign: 'center' },
+                key: index,
+                id: `${index}`,
+                value: codes[index],
+                maxLength: 2,
+                ref: (ref) => handleRef(ref, index),
+                onChange: (e) => handleOnChange(e, index),
+                onKeyDown: handleOnKeyDown,
+                onPaste: (e) => handleOnPaste(e, index)
+            });
+        })
+    );
 };
 //# sourceMappingURL=OtpCode.js.map
