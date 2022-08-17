@@ -37,7 +37,10 @@ export const OtpCode = ({ items = 6, classNames, onChange }) => {
         switch (key) {
             case 'Backspace':
                 {
-                    if (inputRefs.current[Number(target.id)].value === '') {
+                    if (inputRefs.current[Number(target.id)].value !== '') {
+                        inputRefs.current[Number(target.id)].focus();
+                    }
+                    else if (inputRefs.current[Number(target.id)].value === '') {
                         inputRefs.current[Number(target.id) - 1].focus();
                     }
                 }
